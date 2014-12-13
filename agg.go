@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"os"
 	"strconv"
@@ -32,7 +33,9 @@ func aggregate() {
 }
 
 func main() {
-	t := time.NewTicker(1 * time.Second)
+	i := flag.Int("i", 1, "interval for aggregation")
+	flag.Parse()
+	t := time.NewTicker(time.Duration(*i) * time.Second)
 	go func() {
 		for {
 			select {
